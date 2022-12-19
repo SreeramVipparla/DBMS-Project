@@ -1,6 +1,6 @@
 import mysql.connector as Hospital_Management
 # Connect to server
-Con=Hospital_Management.connect(port=3306,host="localhost", user="root", passwd="pswd",database="Hospital_Management")
+Con=Hospital_Management.connect(port=3306,host="localhost", user="root", passwd="root",database="Hospital_Management")
 
 if Con.is_connected():
     print("s")
@@ -184,8 +184,37 @@ def Specific_info_function():
 
 def Create_View_function():
     print("Dear User,Please input the command for viewing the 'create view' command.Please enclose the whole statement in double quotes")
-    Instruction=input()
-    cur.execute(Instruction) 
+    #CREATE VIEW [Brazil Customers] AS SELECT CustomerName, ContactName FROM Customers WHERE Country = 'Brazil';
+    print("These are all the tables that are present")
+    cur.execute("SHOW TABLES")
+    tables=cur.fetchall()
+    print(tables)
+    print("Please enter the name of the Table ")
+    table_name=input()
+    print("Please enter the name of the view that you want to create ")
+    view_name=input()
+    print("Given below is the description of the table 1 ")
+    command5="DESC "+table_name
+    command6=command5
+    cur.execute(command6)
+    result = cur.fetchall()
+    print(result)
+    print("Please insert the values in the tables according to the table description.")
+    print("Eg-CREATE VIEW [Brazil Customers] AS SELECT CustomerName, ContactName FROM Customers WHERE Country = 'Brazil';")
+    print("Please use the above given TABLE DESCRIPTION to fill the column name")
+    print("Please enter a column name from table 1 ")
+    print("LIKE EG- Id or Country")
+    print("You can choose multiple columns,just put a ',' when writing it")
+    print("eg-Customername, contactname")
+    column_name=input()
+    print("Please enter the condition that you want to view in the table")
+    print("Eg-city='Brazil'")
+    condition=input()
+    command="CREATE VIEW "+ view_name +" AS SELECT "+column_name+" FROM "+table_name+" WHERE "+condition
+    cur.execute(command)
+    Con.commit()
+    result = cur.fetchall()
+    print(result)
     print("Select 'YES' to view more information,'NO' for returning to the menu")
     Output6() 
     
