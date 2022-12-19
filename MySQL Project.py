@@ -1029,6 +1029,8 @@ def Union():
     #SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers ORDER BY City;
     cur.execute(command)
     Con.commit()
+    result = cur.fetchall()
+    print(result)
     print("Select 'YES' to manipulate more data,'NO' for returning to the menu")
     Output26()
 
