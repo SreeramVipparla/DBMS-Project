@@ -250,7 +250,7 @@ def Output1():
         Join()
     elif(Output=='6'):
         Miscellaneous_function()
-    elif(Output=='6'):
+    elif(Output=='7'):
         Quit()
     else:
         print("Please select a number given in the options ")
