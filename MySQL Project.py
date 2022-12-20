@@ -1,6 +1,6 @@
 import mysql.connector as Hospital_Management
 # Connect to server
-Con=Hospital_Management.connect(port=3306,host="localhost", user="root", passwd="Tatva#123rao",database="Hospital_Management")
+Con=Hospital_Management.connect(port=3306,host="localhost", user="root", passwd="passwd",database="Hospital_Management")
 
 if Con.is_connected():
     print("s")
