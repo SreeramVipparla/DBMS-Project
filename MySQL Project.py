@@ -128,7 +128,6 @@ def View_function():
 
 def Complete_table_function():
     print("These are all the tables in our database")
-    print("These are the Tables Present")
     cur.execute("SHOW TABLES")
     tables=cur.fetchall()
     print(tables)
@@ -446,9 +445,19 @@ def Insert_data():
     print("Please insert the values in the tables according to the table description")
     print("The given statement is an example")
     print("INSERT INTO Maintains VALUES('RA432','RE1009'),('RA433','RE1087'),('RA434','RE1065'),('RA435','RE1066')")
-    column_info=input()
-    column_info1=(column_info)
-    command="INSERT INTO "+table_name+ " VALUES"+(column_info1)
+    command="INSERT INTO "+table_name+ " VALUES"
+    print("how many entries do you wish to insert")
+    entries=int(input())
+    for j in range(0,entries+1):
+        j+=1
+        if(j==entries):
+            column_data=input()
+            command+="("+column_data+")"
+        else:
+            print("PLease enter the full data of column ")
+            print("Eg-'RA432','RE1009'")
+            column_data=input()
+            command+="("+column_data+"),"
     cur.execute(command)
     Con.commit()
     print("Below is the table that you have just inserted the values into")
