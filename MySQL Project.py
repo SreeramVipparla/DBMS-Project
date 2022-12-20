@@ -1,9 +1,9 @@
 import mysql.connector as Hospital_Management
 # Connect to server
-Con=Hospital_Management.connect(port=3306,host="localhost", user="root", passwd="root",database="Hospital_Management")
+Con=Hospital_Management.connect(port=3306,host="localhost", user="root", passwd="Tatva#123rao",database="Hospital_Management")
 
 if Con.is_connected():
-    print("HI")
+    print("s")
 # Get a cursor
 cur = Con.cursor(buffered=True)
 
@@ -369,12 +369,50 @@ def Output9():
 def Create_table():
     print("Please enter the name of the Table you want to add")
     table_name=input()
-    print("Enter the name of the columns and the data types that you want to add")
-    column_info=input()
-    column_info1=(column_info)
-    command="CREATE TABLE "+table_name+column_info1
+    print("Enter the number of the columns/attributes that you want to add")
+    column_info=int(input())
+    command="CREATE TABLE "+table_name+"("
+    for i in range(0,column_info+1):
+        i+=1
+        if (i==column_info):
+            command+=column_name+" "+data_type+"("+character_limit+") "+null_value+" "+primary_key+") "
+        else:
+            print("enter the name of column ")
+            column_name=input()
+            print("enter the datatype")
+            data_type=input()
+            print("Please enter the character limit")
+            character_limit=input()
+            print("Now specify if the attribute can have null values or not")
+            print("If you do not want any null values then type 'NOT NULL' else just press enter")
+            null_value=input()
+            print("Do you want to make this attribute a primary key?")
+            print("If yes then please type 'PRIMARY KEY' else just submit it again")
+            primary_key=input()
+            count=0
+            if(primary_key == "PRIMARY KEY "):
+                count+=1
+
+            if(count>1):
+                print("You have entered more than 1 primary key in the table,please try again")
+                Create_table()
+            else:
+                command+=column_name+" "+data_type+"("+character_limit+") "+null_value+" "+primary_key+", "
+        
     cur.execute(command)
     Con.commit()
+    ##
+    #CREATE TABLE Persons (
+    #PersonID int,
+    #LastName varchar(255),
+    #FirstName varchar(255),
+    #Address varchar(255),
+    #City varchar(255)
+    #);
+    #
+    #
+    #
+    #
     print("Below is the table that you have just created")
     command1="SELECT * FROM "+ table_name
     command2=command1
