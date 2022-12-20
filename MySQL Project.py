@@ -3,7 +3,7 @@ import mysql.connector as Hospital_Management
 Con=Hospital_Management.connect(port=3306,host="localhost", user="root", passwd="root",database="Hospital_Management")
 
 if Con.is_connected():
-    print("s")
+    print("HI")
 # Get a cursor
 cur = Con.cursor(buffered=True)
 
