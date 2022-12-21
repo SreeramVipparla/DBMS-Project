@@ -374,7 +374,7 @@ def Create_table():
     for i in range(0,column_info+1):
         i+=1
         if (i==column_info):
-            command+=column_name+" "+data_type+"("+character_limit+") "+null_value+" "+primary_key+") "
+            command+=column_name+" "+data_type+"("+character_limit+") "+null_value+" "+primary_key+"), "
         else:
             print("enter the name of column ")
             column_name=input()
